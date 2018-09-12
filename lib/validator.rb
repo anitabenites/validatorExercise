@@ -10,8 +10,8 @@ class Validator
     before_ending = sentence[0...-1]
     last_character = sentence[-1]
     words = before_ending.split(" ")
-    return false unless words.all? { |word| validate_word?(word) }
-    return false unless [".", "!", "?"].include?(last_character)
-    return true
+    return "it is not a valid word" unless words.all? { |word| validate_word?(word) }
+    return "it is not a valid sentence because it does not finish in one of the three punctuations {'.', '!', '?'}" unless [".", "!", "?"].include?(last_character)
+    return "valid"
   end
 end

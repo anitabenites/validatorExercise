@@ -47,64 +47,64 @@ RSpec.describe(Validator) do
     context 'when the words are separated with spaces.' do
       let(:sentence) { 'hello word.' }
 
-      it 'returns true' do
-        expect(subject.validate_sentence?(sentence)).to eq(true)
+      it 'returns valid' do
+        expect(subject.validate_sentence?(sentence)).to eq("valid")
       end
     end
 
     context 'when the sentence ends with an exclamation mark' do
       let(:sentence) { 'hello world, my first programming!' }
 
-      it 'returns true' do
-        expect(subject.validate_sentence?(sentence)).to eq(true)
+      it 'returns valid' do
+        expect(subject.validate_sentence?(sentence)).to eq("valid")
       end
     end
 
     context 'when the sentence ends with a question mark' do
       let(:sentence) { 'hello world, my first programming?' }
 
-      it 'returns true' do
-        expect(subject.validate_sentence?(sentence)).to eq(true)
+      it 'returns valid' do
+        expect(subject.validate_sentence?(sentence)).to eq("valid")
       end
     end
 
     context 'when the sentence ends with a period' do
       let(:sentence) { 'hello world, my first programming.' }
 
-      it 'returns true' do
-        expect(subject.validate_sentence?(sentence)).to eq(true)
+      it 'returns valid' do
+        expect(subject.validate_sentence?(sentence)).to eq("valid")
       end
     end
 
     context 'when the sentence ends with an incorrect punctuation' do
       let(:sentence) {'hello world, my first programming'}
 
-      it 'returns false' do
-        expect(subject.validate_sentence?(sentence)).to eq(false)
+      it 'returns invalid' do
+        expect(subject.validate_sentence?(sentence)).to eq("it is not a valid sentence because it does not finish in one of the three punctuations {'.', '!', '?'}")
       end
     end
 
     context 'when the sentence contains numbers' do
       let(:sentence) {'hello world, my first programming numbers uiu 1!'}
 
-      it 'returns false' do
-        expect(subject.validate_sentence?(sentence)).to eq(false)
+      it 'returns invalid' do
+        expect(subject.validate_sentence?(sentence)).to eq("it is not a valid word")
       end
     end
 
     context 'when the sentence contains special characters' do
       let(:sentence) {'hello world, my first programming has numbers $.'}
 
-      it 'returns false' do
-        expect(subject.validate_sentence?(sentence)).to eq(false)
+      it 'returns invalid' do
+        expect(subject.validate_sentence?(sentence)).to eq("it is not a valid word")
       end
     end
 
     context 'when the sentence contains invalid words'do
       let(:sentence) {'hello world, my first programming t18764@ words.'}
 
-      it 'returns false' do
-        expect(subject.validate_sentence?(sentence)).to eq(false)
+      it 'returns invalid' do
+        expect(subject.validate_sentence?(sentence)).to eq("it is not a valid word")
       end
     end
  end
